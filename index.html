@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GT Design Digital & Informática — Marketplace</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00d2ff">
+</head>
+<body>
+
+  <!-- Barra Superior de Afiliados / Compartilhe & Ganhe -->
+  <div class="top-promo-bar" onclick="abrirModalAfiliado()">
+    <span>🔥 <strong>Compartilhe & Ganhe:</strong> Indique o app ou serviços e ganhe comissões ou valor fixo no PIX! <u>Saiba mais</u></span>
+  </div>
+
+  <!-- Cabeçalho Principal estilo Marketplace -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <h1>GT <span>MARKET</span></h1>
+        <p>Digital, Informática & Serviços em um só lugar</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn-afiliado-top" onclick="abrirModalAfiliado()">🤝 Meu Link de Afiliado</button>
+      </div>
+    </div>
+    <!-- Barra de Pesquisa Rápida -->
+    <div class="search-bar-container">
+      <input type="text" id="input-busca" placeholder="🔍 Pesquisar serviços (ex: currículo, formatação, banner)..." onkeyup="filtrarPorBusca()">
+    </div>
+  </header>
+
+  <!-- Categorias Estilo Marketplace -->
+  <nav class="categories-nav">
+    <button class="cat-btn active" onclick="filtrarCategoria('todos')">🌟 Todos</button>
+    <button class="cat-btn" onclick="filtrarCategoria('online')">🌐 100% Online</button>
+    <button class="cat-btn" onclick="filtrarCategoria('impressao')">🖨️ Impressão & Cópias</button>
+    <button class="cat-btn" onclick="filtrarCategoria('informatica')">💻 Informática & PC</button>
+    <button class="cat-btn" onclick="filtrarCategoria('celular')">📱 Telemóveis</button>
+  </nav>
+
+  <!-- Conteúdo Principal / Catálogo -->
+  <main class="main-container">
+    <div class="store-banner">
+      <h2>Atendimento em Capoeiruçu, Cachoeira e Conceição da Feira / BA</h2>
+      <p>Peça com agilidade, pague direto e receba com qualidade profissional!</p>
+    </div>
+
+    <div id="grid-produtos" class="grid-produtos">
+      <!-- Os produtos/serviços entram aqui via JavaScript -->
+    </div>
+  </main>
+
+  <!-- Carrinho Flutuante Estilo Anota.AI / Mercado Livre -->
+  <div id="carrinho-flutuante" class="carrinho-flutuante" onclick="abrirCheckout()">
+    <div class="carrinho-info">
+      <span>🛒 <strong id="qtd-carrinho">0</strong> itens no pedido</span>
+      <span id="valor-total-resumo">Orçamento Personalizado</span>
+    </div>
+    <button class="btn-ver-carrinho">Ver Carrinho &rarr;</button>
+  </div>
+
+  <!-- Modal de Checkout / Finalização do Pedido -->
+  <div id="modal-checkout" class="modal">
+    <div class="modal-content checkout-content">
+      <span class="close-btn" onclick="fecharCheckout()">&times;</span>
+      <h2>📋 Seu Carrinho de Pedidos</h2>
+      
+      <div id="lista-itens-checkout" class="lista-itens-checkout">
+        <!-- Itens selecionados -->
+      </div>
+
+      <form id="form-finalizar" class="form-finalizar" onsubmit="enviarPedidoWhatsApp(event)">
+        <h3>Dados de Entrega / Atendimento</h3>
+        
+        <label for="cli-nome">Seu Nome Completo:</label>
+        <input type="text" id="cli-nome" required placeholder="Digite seu nome">
+
+        <label for="cli-cidade">Localidade / Bairro:</label>
+        <select id="cli-cidade" required>
+          <option value="">Selecione sua cidade/região...</option>
+          <option value="Capoeiruçu — Cachoeira/BA">Capoeiruçu — Cachoeira/BA</option>
+          <option value="Cachoeira/BA (Centro e Arredores)">Cachoeira/BA (Centro e Arredores)</option>
+          <option value="Conceição da Feira/BA">Conceição da Feira/BA</option>
+          <option value="Atendimento 100% Online (Outra Cidade)">Atendimento 100% Online (Outra Cidade)</option>
+        </select>
+
+        <label for="cli-afiliado">Código de Indicação / Afiliado (Opcional):</label>
+        <input type="text" id="cli-afiliado" placeholder="Ex: GT-4892 (Se foi indicado por alguém)">
+
+        <label for="cli-obs">Observações Específicas:</label>
+        <textarea id="cli-obs" rows="2" placeholder="Ex: Preciso para amanhã cedo, cores azul e branco..."></textarea>
+
+        <button type="submit" class="btn-enviar-wpp">
+          📲 Enviar Pedido Completo via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal do Painel de Afiliados / Compartilhe e Ganhe -->
+  <div id="modal-afiliado" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModalAfiliado()">&times;</span>
+      <h2>🤝 Painel de Afiliados & Compartilhe e Ganhe</h2>
+      <p>Indique o aplicativo da <strong>GT Design</strong> para amigos ou clientes e ganhe recompensas em dinheiro!</p>
+      
+      <div class="regras-afiliado-box">
+        <ul>
+          <li>💰 <strong>Indicação de App:</strong> Ganhe valor fixo por cada novo cliente que baixar e encomendar pelo seu link.</li>
+          <li>📊 <strong>Indicação de Serviços:</strong> Ganhe comissão percentual sobre trabalhos de design e artes digitais.</li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label>Seu Nome:</label>
+        <input type="text" id="aff-nome" placeholder="Seu nome completo">
+      </div>
+      <div class="form-group">
+        <label>Chave PIX (Para receber os pagamentos):</label>
+        <input type="text" id="aff-pix" placeholder="CPF, Telefone ou E-mail PIX">
+      </div>
+
+      <button class="btn-gerar-link" onclick="gerarAfiliadoID()">Gerar Meu Código Exclusivo</button>
+
+      <div id="area-resultado-aff" style="display:none; margin-top: 15px;">
+        <hr style="border-color: #23314d; margin: 10px 0;">
+        <p>Seu Código de Afiliado: <strong id="codigo-criado" style="color: var(--neon-cyan);">GT-0000</strong></p>
+        <button class="btn-whatsapp-share" onclick="compartilharWhatsAppAfiliado()">
+          🚀 Partilhar App no WhatsApp & Faturar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; GT Design Digital & Informática | Atendimento Rápido e Confiável</p>
+    <p>Capoeiruçu — Cachoeira/BA & Conceição da Feira/BA</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
