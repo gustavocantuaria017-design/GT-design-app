@@ -1,20 +1,23 @@
 {
-  "name": "GT Design Marketplace",
   "short_name": "GT Design",
+  "name": "GT Design Digital & Informática",
+  "description": "Catálogo de serviços digitais, assistência técnica e soluções de design.",
+  "id": "com.gtdesign.app",
   "start_url": "./index.html",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
   "display": "standalone",
-  "background_color": "#070b14",
-  "theme_color": "#00d2ff",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "https://via.placeholder.com/192/00d2ff/000000?text=GT",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "https://cdn-icons-png.flaticon.com/512/1055/1055666.png",
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
-      "src": "https://via.placeholder.com/512/00d2ff/000000?text=GT",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "https://cdn-icons-png.flaticon.com/512/1055/1055666.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
